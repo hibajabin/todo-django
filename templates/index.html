@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {% if task.completed %}
+                    <strike>{{ task.title }}</strike>
+                {% else %}
+                    {{ task.title }}
+                    <a href="{% url 'complete' task.id %}">Complete</a>
+                {% endif %}
+                <a href="{% url 'delete' task.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No tasks yet</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
