@@ -12,7 +12,7 @@ def index(request):
             form.save()
             return redirect('index')
 
-    return render(request, 'myapp/index.html', {
+    return render(request, 'index.html', {
         'tasks': tasks,
         'form': form
     })
